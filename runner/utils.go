@@ -24,16 +24,19 @@ func isTmpDir(path string) bool {
 }
 
 func isIgnoredFolder(path string) bool {
+  firstPathChar := path[0:1]
+  var index int8 = 0
+  if firstPath == "/" {
+    index = 1
+  }
+
 	paths := strings.Split(path, "/")
 	if len(paths) <= 0 {
 		return false
 	}
 
 	for _, e := range strings.Split(settings["ignored"], ",") {
-
-    watcherLog("SETTINGS-IGNORED %s", e)
-    watcherLog("PATH-TO-IGNORE %s", path)
-    if strings.TrimSpace(e) == paths[0] {
+    if strings.TrimSpace(e) == paths[index] {
 			return true
 		}
 	}
