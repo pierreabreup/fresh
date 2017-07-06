@@ -32,7 +32,7 @@ func isIgnoredFolder(path string) bool {
 	for _, e := range strings.Split(settings["ignored"], ",") {
 
     watcherLog("SETTINGS-IGNORED %s", e)
-    watcherLog("PATH-TO-IGNORE %s", paths[0])
+    watcherLog("PATH-TO-IGNORE %s", path)
     if strings.TrimSpace(e) == paths[0] {
 			return true
 		}
