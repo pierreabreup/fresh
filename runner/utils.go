@@ -23,20 +23,19 @@ func isTmpDir(path string) bool {
 	return absolutePath == absoluteTmpPath
 }
 
-func isIgnoredFolder(path string) bool {
-  firstPathChar := path[0:1]
-  var index int8 = 0
-  if firstPath == "/" {
-    index = 1
-  }
-
-	paths := strings.Split(path, "/")
-	if len(paths) <= 0 {
-		return false
-	}
+func isIgnoredFolder(fullPath string) bool {
+  copyIndex := 0
+  root := root()
 
 	for _, e := range strings.Split(settings["ignored"], ",") {
-    if strings.TrimSpace(e) == paths[index] {
+    ignored := strings.TrimSpace(e)
+    fullIgnoredPath = make([]byte, len(root)+len(ignored))
+    copyIndex += copy(fullIgnoredPath[index:],root)
+    copyIndex += copy(fullIgnoredPath[index:],ignored)
+
+    watcherLog("FULL IGNORED %s", fullIgnoredPath)
+    watcherLog("FULL PATH %s", fullPath)
+    if strings.Contains(fullPath,fullIgnoredPath) {
 			return true
 		}
 	}
