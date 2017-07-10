@@ -29,9 +29,9 @@ func isIgnoredFolder(fullPath string) bool {
 
 	for _, e := range strings.Split(settings["ignored"], ",") {
     ignored := strings.TrimSpace(e)
-    fullIgnoredPath = make([]byte, len(root)+len(ignored))
-    copyIndex += copy(fullIgnoredPath[index:],root)
-    copyIndex += copy(fullIgnoredPath[index:],ignored)
+    fullIgnoredPath := make([]byte, len(root)+len(ignored))
+    copyIndex += copy(fullIgnoredPath[copyIndex:],root)
+    copyIndex += copy(fullIgnoredPath[copyIndex:],ignored)
 
     watcherLog("FULL IGNORED %s", fullIgnoredPath)
     watcherLog("FULL PATH %s", fullPath)
