@@ -24,12 +24,12 @@ func isTmpDir(path string) bool {
 }
 
 func isIgnoredFolder(fullPath string) bool {
-  copyIndex := 0
   root := root()
 
 	for _, e := range strings.Split(settings["ignored"], ",") {
     ignored := strings.TrimSpace(e)
     fullIgnoredPath := make([]byte, len(root)+len(ignored))
+    copyIndex := 0
     copyIndex += copy(fullIgnoredPath[copyIndex:],root)
     copyIndex += copy(fullIgnoredPath[copyIndex:],ignored)
 
