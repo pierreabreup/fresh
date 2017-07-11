@@ -33,9 +33,9 @@ func isIgnoredFolder(fullPath string) bool {
     copyIndex += copy(fullIgnoredPath[copyIndex:],root)
     copyIndex += copy(fullIgnoredPath[copyIndex:],ignored)
 
-    watcherLog("FULL IGNORED %s", fullIgnoredPath)
+    watcherLog("FULL IGNORED %s", string(fullIgnoredPath))
     watcherLog("FULL PATH %s", fullPath)
-    if strings.Contains(fullPath,fullIgnoredPath) {
+    if strings.Contains(fullPath,string(fullIgnoredPath)) {
 			return true
 		}
 	}
