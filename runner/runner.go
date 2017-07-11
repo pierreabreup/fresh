@@ -9,7 +9,7 @@ func run() bool {
 	runnerLog("Running...")
 
   root := root()
-  executableName = 'main'
+  executableName := 'main'
   executableFile := make([]byte, len(root)+len(executableName))
   copyIndex := 0
   copyIndex += copy(executableFile[copyIndex:],root)
