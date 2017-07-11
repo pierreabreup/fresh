@@ -8,7 +8,14 @@ import (
 func run() bool {
 	runnerLog("Running...")
 
-	cmd := exec.Command("${GOPATH}/bin/main")
+  root := root()
+  executableName = 'main'
+  executableFile := make([]byte, len(root)+len(executableName))
+  copyIndex := 0
+  copyIndex += copy(executableFile[copyIndex:],root)
+  copyIndex += copy(executableFile[copyIndex:],executableName)
+
+	cmd := exec.Command(string(executableFile))
 
 	stderr, err := cmd.StderrPipe()
 	if err != nil {
